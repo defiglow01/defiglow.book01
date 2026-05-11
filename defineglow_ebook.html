@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>당신은 무능한 게 아니다 | DEFINEGLOW 디파글로우</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700;900&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #09090b;
+  --surface: #141417;
+  --surface2: #1c1c20;
+  --border: #27272a;
+  --gold: #c8a84b;
+  --gold-light: #e8cc80;
+  --gold-dim: #6a5520;
+  --cream: #f0e8d0;
+  --muted: #71717a;
+  --text: #e4e4e7;
+  --blue: #4a90c4;
+  --blue-light: #6aaee0;
+  --blue-pale: rgba(74,144,196,0.08);
+  --blue-border: rgba(74,144,196,0.2);
+  --red: #c04840;
+  --red-bg: rgba(192,72,64,0.1);
+  --red-border: rgba(192,72,64,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;overflow-x:hidden;line-height:1.75;}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
+
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:80px 24px;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,168,75,0.1) 0%,transparent 65%);
+  top:40%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;animation:pulse 7s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.1);}}
+
+.book-kicker{font-size:11px;letter-spacing:.25em;color:var(--blue);font-weight:600;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:1;animation:fadeUp .8s ease both;}
+.book-subtitle{font-size:clamp(12px,1.8vw,14px);color:var(--muted);letter-spacing:.05em;margin-bottom:12px;position:relative;z-index:1;animation:fadeUp .8s .1s ease both;}
+.book-title{font-family:'Gowun Batang',serif;font-size:clamp(40px,7vw,84px);font-weight:700;line-height:1.15;color:var(--cream);margin-bottom:20px;position:relative;z-index:1;animation:fadeUp .8s .15s ease both;}
+.book-title em{font-style:normal;color:var(--gold-light);}
+.book-author{font-size:14px;color:var(--gold);letter-spacing:.1em;margin-bottom:36px;position:relative;z-index:1;animation:fadeUp .8s .2s ease both;}
+
+.badge-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;position:relative;z-index:1;animation:fadeUp .8s .25s ease both;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.04);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.06em;padding:6px 16px;border-radius:100px;}
+
+.price-box{position:relative;z-index:1;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px 52px;margin-bottom:28px;animation:fadeUp .8s .35s ease both;}
+.price-box::before{content:'';position:absolute;inset:-1px;border-radius:20px;z-index:-1;background:linear-gradient(135deg,rgba(200,168,75,0.25),transparent 50%);}
+.price-original{font-size:14px;color:var(--muted);text-decoration:line-through;margin-bottom:8px;}
+.price-row{display:flex;align-items:center;gap:14px;justify-content:center;}
+.price-tag{background:var(--red);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 10px;border-radius:6px;}
+.price-now{font-family:'Noto Serif KR',serif;font-size:clamp(40px,5vw,56px);font-weight:700;color:var(--gold-light);}
+.price-info{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.7;}
+.price-info strong{color:var(--gold);}
+
+.cta-hero{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#1a1200;font-size:15px;font-weight:700;padding:16px 52px;border-radius:100px;text-decoration:none;letter-spacing:.04em;box-shadow:0 8px 32px rgba(200,168,75,0.25);position:relative;z-index:1;transition:all .3s;animation:fadeUp .8s .45s ease both;}
+.cta-hero:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(200,168,75,0.4);}
+.cta-note{font-size:12px;color:var(--muted);margin-top:14px;position:relative;z-index:1;animation:fadeUp .8s .5s ease both;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+hr.div{border:none;border-top:1px solid var(--border);}
+section{position:relative;z-index:1;padding:80px 24px;max-width:860px;margin:0 auto;}
+.sec-label{font-size:10px;letter-spacing:.22em;color:var(--gold-dim);font-weight:700;text-transform:uppercase;margin-bottom:10px;}
+.sec-title{font-family:'Gowun Batang',serif;font-size:clamp(22px,4vw,36px);font-weight:700;color:var(--cream);line-height:1.4;margin-bottom:14px;}
+.sec-desc{font-size:14px;color:var(--muted);line-height:1.9;max-width:600px;}
+
+.empathy{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:14px;padding:28px 32px;margin:40px 0 0;font-size:15px;color:var(--text);line-height:2;font-family:'Gowun Batang',serif;}
+.empathy p{margin-bottom:6px;}
+.empathy p:last-child{margin-bottom:0;}
+
+.toc-grid{display:grid;gap:16px;margin-top:40px;}
+.toc-part{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.toc-part-header{background:var(--surface2);padding:16px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);}
+.toc-part-num{font-size:10px;letter-spacing:.15em;color:var(--blue);font-weight:700;}
+.toc-part-title{font-size:15px;font-weight:600;color:var(--cream);}
+.toc-chapters{padding:16px 24px;display:grid;gap:10px;}
+.toc-ch{display:flex;align-items:flex-start;gap:12px;font-size:13px;line-height:1.6;}
+.toc-ch-num{color:var(--border);font-weight:600;min-width:24px;margin-top:1px;}
+.toc-ch-text{color:var(--text);}
+.toc-worksheet{display:inline-block;background:var(--blue-pale);border:1px solid var(--blue-border);color:var(--blue-light);font-size:11px;font-weight:600;letter-spacing:.05em;padding:3px 12px;border-radius:100px;margin-top:6px;}
+
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:40px;}
+.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px 24px;transition:border-color .3s;}
+.insight-card:hover{border-color:var(--gold-dim);}
+.insight-icon{font-size:26px;margin-bottom:14px;}
+.insight-card h3{font-size:14px;font-weight:600;color:var(--cream);margin-bottom:8px;line-height:1.5;}
+.insight-card p{font-size:13px;color:var(--muted);line-height:1.75;}
+
+.hidden-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:40px;}
+.hidden-card-header{background:linear-gradient(135deg,var(--surface2),var(--bg));padding:24px 28px;border-bottom:1px solid var(--border);}
+.hidden-card-title{font-family:'Gowun Batang',serif;font-size:20px;font-weight:700;color:var(--cream);margin-bottom:4px;}
+.hidden-card-sub{font-size:13px;color:var(--muted);}
+.hidden-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.hc-item{padding:24px 28px;border-bottom:1px solid var(--border);}
+.hc-item:nth-child(odd){border-right:1px solid var(--border);}
+.hc-item:nth-child(3),.hc-item:nth-child(4){border-bottom:none;}
+.hc-cat{font-size:13px;font-weight:700;color:var(--blue-light);margin-bottom:12px;}
+.hc-list{list-style:none;display:grid;gap:6px;}
+.hc-list li{font-size:13px;color:var(--muted);padding-left:14px;position:relative;line-height:1.6;}
+.hc-list li::before{content:'·';position:absolute;left:0;color:var(--blue);font-weight:700;}
+@media(max-width:560px){
+  .hidden-card-grid{grid-template-columns:1fr;}
+  .hc-item:nth-child(odd){border-right:none;}
+  .hc-item:nth-child(3){border-bottom:1px solid var(--border);}
+}
+
+.who-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:40px;}
+.who-item{display:flex;align-items:flex-start;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;font-size:13px;color:var(--text);line-height:1.7;}
+.who-item-icon{font-size:22px;margin-top:1px;flex-shrink:0;}
+
+.quote-wrap{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 24px;}
+.quote-inner{max-width:640px;margin:0 auto;text-align:center;}
+.q-mark{font-family:'Gowun Batang',serif;font-size:72px;color:rgba(200,168,75,0.2);line-height:.7;margin-bottom:24px;display:block;}
+.q-text{font-family:'Gowun Batang',serif;font-size:clamp(17px,2.8vw,24px);color:var(--cream);line-height:1.8;margin-bottom:20px;}
+.q-author{font-size:13px;color:var(--gold);letter-spacing:.08em;}
+
+.final{text-align:center;padding:100px 24px;position:relative;overflow:hidden;}
+.final-glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(192,72,64,0.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.final-badge{display:inline-block;background:var(--red-bg);border:1px solid var(--red-border);color:#e06058;font-size:11px;font-weight:700;letter-spacing:.12em;padding:6px 18px;border-radius:100px;margin-bottom:24px;position:relative;z-index:1;}
+.final-title{font-family:'Gowun Batang',serif;font-size:clamp(24px,4.5vw,46px);color:var(--cream);line-height:1.4;margin-bottom:16px;position:relative;z-index:1;}
+.final-price{font-size:15px;color:var(--muted);margin-bottom:8px;position:relative;z-index:1;}
+.final-price strong{color:var(--gold-light);font-size:20px;}
+.final-update{font-size:13px;color:var(--gold);margin-bottom:36px;position:relative;z-index:1;}
+.btn-kakao{display:inline-flex;align-items:center;gap:10px;background:#FEE500;color:#1a1200;font-size:15px;font-weight:700;padding:16px 44px;border-radius:100px;text-decoration:none;transition:all .3s;box-shadow:0 8px 28px rgba(254,229,0,0.18);position:relative;z-index:1;}
+.btn-kakao:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(254,229,0,0.3);}
+.final-note{font-size:12px;color:var(--muted);margin-top:16px;position:relative;z-index:1;}
+
+.sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(9,9,11,0.94);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;z-index:100;transform:translateY(100%);transition:transform .4s ease;}
+.sticky.on{transform:translateY(0);}
+.sticky-price{display:flex;flex-direction:column;}
+.sticky-orig{font-size:11px;color:var(--muted);text-decoration:line-through;}
+.sticky-now{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--gold-light);}
+.sticky-btn{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#1a1200;font-size:14px;font-weight:700;padding:12px 28px;border-radius:100px;text-decoration:none;white-space:nowrap;}
+
+footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.9;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-glow"></div>
+  <p class="book-kicker">DEFINEGLOW 전자책 · 2026년 개정판</p>
+  <p class="book-subtitle">존중 없는 조직에서 버티는 기술 지침서</p>
+  <h1 class="book-title">당신은 <em>무능한 게</em><br>아니다</h1>
+  <p class="book-author">디파글로우 지음 · 오늘을 살고 있는 우리를 위한 지침서</p>
+  <div class="badge-row">
+    <span class="badge"><span>📋</span> 지침서 공식</span>
+    <span class="badge"><span>🔄</span> 변화전략 공식</span>
+    <span class="badge"><span>✨</span> 인생변화 공식</span>
+  </div>
+  <div class="price-box">
+    <p class="price-original">정가 39,000원</p>
+    <div class="price-row">
+      <span class="price-tag">상반기 한정 61% OFF</span>
+      <span class="price-now">15,000원</span>
+    </div>
+    <p class="price-info">한 번 구매 시 <strong>평생 무료 업데이트</strong> 제공</p>
+  </div>
+  <a href="https://open.kakao.com" class="cta-hero" target="_blank">💬 카카오톡으로 구매하기</a>
+  <p class="cta-note">이 책을 펼치는 순간, 당신의 삶은 조금씩 변하게 될 것입니다.</p>
+</div>
+
+<hr class="div"/>
+
+<section>
+  <p class="sec-label reveal">이 책을 펼친 당신에게</p>
+  <h2 class="sec-title reveal">오늘도 출근길이 무거우셨나요?</h2>
+  <div class="empathy reveal">
+    <p>상사의 말 한마디에 하루 종일 내가 잘못한 게 뭔지 돌이켜보거나,</p>
+    <p>분명히 내가 한 일인데 <strong>"그런 말 한 적 없다"</strong>는 말에 현실 감각이 흔들리거나,</p>
+    <p>지쳐서 쉬고 싶은데 쉬면 뒤처질 것 같은 공포감에 쉬지도 못하고 있거나.</p>
+    <p style="margin-top:16px;color:var(--text);">이 책은 그런 당신을 위해 썼습니다. 화려한 성공 스토리도 없고, "강해지면 돼요"라는 공허한 응원도 없습니다. 대신, 직장이라는 공간에서 심리적으로 살아남기 위한 <strong>실질적인 전략</strong>을 담았습니다.</p>
+    <p style="margin-top:12px;font-weight:600;color:var(--cream);">당신이 이상한 게 아닙니다. 상황이 이상한 것입니다.</p>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section>
+  <p class="sec-label reveal">대상 독자</p>
+  <h2 class="sec-title reveal">이런 상황이라면 꼭 읽어보세요</h2>
+  <div class="who-list">
+    <div class="who-item reveal"><span class="who-item-icon">😶‍🌫️</span><span>"내가 예민한 건가?" 스스로를 의심하게 되는 분</span></div>
+    <div class="who-item reveal"><span class="who-item-icon">📋</span><span>회의에서 내가 한 일이 상사 아이디어로 보고서에 적히는 분</span></div>
+    <div class="who-item reveal"><span class="who-item-icon">🔀</span><span>어제까지 OK였던 기준이 오늘 갑자기 바뀌는 상황을 겪는 분</span></div>
+    <div class="who-item reveal"><span class="who-item-icon">🪫</span><span>열심히 하는데 번아웃이 반복되는 분</span></div>
+    <div class="who-item reveal"><span class="who-item-icon">🔁</span><span>회사를 바꿔도 비슷한 패턴이 반복되는 분</span></div>
+    <div class="who-item reveal"><span class="who-item-icon">💬</span><span>하고 싶은 말이 있는데 눈치 보여 결국 또 참는 분</span></div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section>
+  <p class="sec-label reveal">전자책 목차</p>
+  <h2 class="sec-title reveal">5개 파트 · 13장 · 5개 실습 워크시트</h2>
+  <p class="sec-desc reveal">읽고 덮어두는 책이 아닙니다. 각 파트마다 워크시트가 있어 내일 출근길부터 바로 써먹습니다.</p>
+  <div class="toc-grid reveal">
+
+    <div class="toc-part">
+      <div class="toc-part-header">
+        <span class="toc-part-num">PART 1</span>
+        <span class="toc-part-title">가스라이팅 상사 — 현실을 빼앗기지 않으려면?</span>
+      </div>
+      <div class="toc-chapters">
+        <div class="toc-ch"><span class="toc-ch-num">1장</span><span class="toc-ch-text">가스라이팅이란 무엇인가 — 단순 갈등 vs 가스라이팅의 차이</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">2장</span><span class="toc-ch-text">직장 내 가스라이팅 패턴 12가지 — 기억 부정·감정 무효화·공로 가로채기 등</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">3장</span><span class="toc-ch-text">나의 현실을 지키는 방법 — 사실 기록, 이메일로 대화 남기기, 현실 점검</span></div>
+        <div class="toc-ch"><span class="toc-worksheet">✏ 실습지 1. 사건 기록 워크시트</span></div>
+      </div>
+    </div>
+
+    <div class="toc-part">
+      <div class="toc-part-header">
+        <span class="toc-part-num">PART 2</span>
+        <span class="toc-part-title">나르시스트 상사 — 감정을 소모하지 않으려면?</span>
+      </div>
+      <div class="toc-chapters">
+        <div class="toc-ch"><span class="toc-ch-num">4장</span><span class="toc-ch-text">나르시시즘이란 무엇인가 — 직장 맥락의 핵심 특성 5가지</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">5장</span><span class="toc-ch-text">나르시스트 상사의 전형적 행동 패턴</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">6장</span><span class="toc-ch-text">회색 돌 전략과 감정 경계 설정</span></div>
+        <div class="toc-ch"><span class="toc-worksheet">✏ 실습지 2. 감정 소모 추적 워크시트</span></div>
+      </div>
+    </div>
+
+    <div class="toc-part">
+      <div class="toc-part-header">
+        <span class="toc-part-num">PART 3</span>
+        <span class="toc-part-title">번아웃 — 다시 나를 찾으려면?</span>
+      </div>
+      <div class="toc-chapters">
+        <div class="toc-ch"><span class="toc-ch-num">7장</span><span class="toc-ch-text">번아웃의 진짜 원인 — 업무량·통제력·보상이 동시에 무너질 때</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">8장</span><span class="toc-ch-text">번아웃 단계 자가 진단</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">9장</span><span class="toc-ch-text">번아웃에서 회복하는 실전 전략 — 에너지 주는 것과 빼는 것 구분</span></div>
+        <div class="toc-ch"><span class="toc-worksheet">✏ 실습지 3. 나의 에너지 지도 워크시트</span></div>
+      </div>
+    </div>
+
+    <div class="toc-part">
+      <div class="toc-part-header">
+        <span class="toc-part-num">PART 4</span>
+        <span class="toc-part-title">일의 회의감 — 다시 의미를 찾으려면?</span>
+      </div>
+      <div class="toc-chapters">
+        <div class="toc-ch"><span class="toc-ch-num">10장</span><span class="toc-ch-text">왜 갑자기 일이 무의미하게 느껴질까</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">11장</span><span class="toc-ch-text">의미 재발견의 심리학 — 잡 크래프팅으로 의미 재발견</span></div>
+        <div class="toc-ch"><span class="toc-worksheet">✏ 실습지 4. 나의 가치관 나침반 워크시트</span></div>
+      </div>
+    </div>
+
+    <div class="toc-part">
+      <div class="toc-part-header">
+        <span class="toc-part-num">PART 5</span>
+        <span class="toc-part-title">지금 당신에게 필요한 것들</span>
+      </div>
+      <div class="toc-chapters">
+        <div class="toc-ch"><span class="toc-ch-num">12장</span><span class="toc-ch-text">떠날까 버틸까 — 현명한 결정을 위한 프레임</span></div>
+        <div class="toc-ch"><span class="toc-ch-num">13장</span><span class="toc-ch-text">자기 자신으로 돌아오는 길</span></div>
+        <div class="toc-ch"><span class="toc-worksheet">✏ 실습지 5. 나에게 쓰는 편지</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section>
+  <p class="sec-label reveal">책에서 얻는 것들</p>
+  <h2 class="sec-title reveal">읽고 나면 달라지는 것들</h2>
+  <div class="insight-grid">
+    <div class="insight-card reveal">
+      <div class="insight-icon">🎯</div>
+      <h3>가스라이팅 12패턴 식별</h3>
+      <p>기억 부정, 감정 무효화, 공로 가로채기 등 직장 내 패턴을 정확히 알아 더 이상 스스로를 의심하지 않습니다.</p>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-icon">🛡</div>
+      <h3>회색 돌 전략</h3>
+      <p>나르시스트 상사에게 감정적으로 반응하지 않고 관계를 유지하면서 나를 지키는 구체적 대응법을 익힙니다.</p>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-icon">⚡</div>
+      <h3>번아웃 자가 진단 & 회복</h3>
+      <p>내가 몇 단계인지 파악하고 에너지를 주는 것과 빼는 것을 구분해 진짜 회복 루틴을 설계합니다.</p>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-icon">📝</div>
+      <h3>사실 기록으로 현실 지키기</h3>
+      <p>날짜·발언·상황·감정을 기록하는 습관 하나로 "그런 말 한 적 없다"는 부정을 막을 수 있습니다.</p>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-icon">🧭</div>
+      <h3>떠날까 버틸까 결정 프레임</h3>
+      <p>감정이 아닌 구조적 기준으로 이직과 잔류를 결정하는 방법. 후회 없는 선택을 위한 프레임.</p>
+    </div>
+    <div class="insight-card reveal">
+      <div class="insight-icon">🪞</div>
+      <h3>5개 실습 워크시트 포함</h3>
+      <p>각 파트 말미에 바로 쓸 수 있는 워크시트가 있어 읽고 끝나는 책이 아닌 실천으로 이어집니다.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section>
+  <p class="sec-label reveal">부록</p>
+  <h2 class="sec-title reveal">히든 참고 카드</h2>
+  <p class="sec-desc reveal">책 마지막 페이지에 수록된 긴급 대응 치트시트. 오려서(또는 사진 찍어서) 필요할 때 꺼내보세요.</p>
+  <div class="hidden-card reveal">
+    <div class="hidden-card-header">
+      <p class="hidden-card-title">🃏 상황별 즉각 대응 치트시트</p>
+      <p class="hidden-card-sub">4가지 상황 × 4가지 행동 전략</p>
+    </div>
+    <div class="hidden-card-grid">
+      <div class="hc-item">
+        <p class="hc-cat">가스라이팅 대응</p>
+        <ul class="hc-list">
+          <li>모든 것을 기록한다</li>
+          <li>구두 내용은 메신저·이메일로 확인</li>
+          <li>신뢰할 사람과 현실 점검</li>
+          <li>대응 어구 미리 준비</li>
+        </ul>
+      </div>
+      <div class="hc-item">
+        <p class="hc-cat" style="color:#e8a87c;">나르시스트 상사 대응</p>
+        <ul class="hc-list">
+          <li>회색 돌 전략 (단조롭게 반응)</li>
+          <li>공로를 사전에 문서화</li>
+          <li>감정 경계를 스스로 정하기</li>
+          <li>칭찬/비난에 크게 반응 않기</li>
+        </ul>
+      </div>
+      <div class="hc-item">
+        <p class="hc-cat" style="color:#7ec8a8;">번아웃 회복</p>
+        <ul class="hc-list">
+          <li>아주 작게 시작 (10분 산책)</li>
+          <li>에너지 주는 것/빼는 것 구분</li>
+          <li>"아니오" 연습하기</li>
+          <li>상담 설정하기</li>
+        </ul>
+      </div>
+      <div class="hc-item">
+        <p class="hc-cat" style="color:#c4a8e0;">회의감 극복</p>
+        <ul class="hc-list">
+          <li>핵심 가치관 3가지 찾기</li>
+          <li>잡 크래프팅으로 의미 재발견</li>
+          <li>나의 기여를 직접 기록하기</li>
+          <li>버틸지 떠날지 프레임 사용</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-wrap">
+  <div class="quote-inner">
+    <span class="q-mark reveal">"</span>
+    <p class="q-text reveal">열심히 안 한 게 아니에요.<br>방향이 조금 어긋나 있었던 거예요.<br>그걸 아는 것만으로도 달라집니다.</p>
+    <p class="q-author reveal">— DEFINEGLOW 대표 제이 JAY</p>
+  </div>
+</div>
+
+<div class="final">
+  <div class="final-glow"></div>
+  <p class="final-badge reveal">⏰ 2026 상반기 한정 특가</p>
+  <h2 class="final-title reveal">지금이 가장 저렴하게<br>시작할 수 있는 때예요</h2>
+  <p class="final-price reveal">정가 39,000원 → 상반기 한정 <strong>15,000원</strong></p>
+  <p class="final-update reveal">✅ 한 번 구매 시 평생 무료 업데이트 제공</p>
+  <a href="https://open.kakao.com" class="btn-kakao reveal" target="_blank">💬 카카오톡으로 구매하기</a>
+  <p class="final-note reveal">문의 및 결제 모두 카카오톡으로 진행됩니다</p>
+</div>
+
+<footer>
+  <p><strong style="color:var(--gold);">DEFINEGLOW 디파글로우</strong></p>
+  <p style="margin-top:6px;">번아웃 직장인을 위한 회복 & 성장 코칭 플랫폼</p>
+  <p style="margin-top:4px;">대표 제이 JAY · 문의: 카카오톡 오픈채팅</p>
+  <p style="margin-top:14px;font-size:11px;">© 2026 DEFINEGLOW. All rights reserved.</p>
+</footer>
+
+<div class="sticky" id="stickyBar">
+  <div class="sticky-price">
+    <span class="sticky-orig">39,000원</span>
+    <span class="sticky-now">15,000원</span>
+  </div>
+  <a href="https://open.kakao.com" class="sticky-btn" target="_blank">지금 구매하기 →</a>
+</div>
+
+<script>
+const els=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);obs.unobserve(e.target);}
+  });
+},{threshold:.1});
+els.forEach(el=>obs.observe(el));
+const hero=document.querySelector('.hero');
+const bar=document.getElementById('stickyBar');
+new IntersectionObserver(e=>{bar.classList.toggle('on',!e[0].isIntersecting);},{threshold:0}).observe(hero);
+</script>
+</body>
+</html>
